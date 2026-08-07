@@ -1,0 +1,10 @@
+# Press Kit Assets
+
+Place your downloadable press files here:
+
+- `wave-assembly-photos.zip` — High-resolution photos
+- `wave-assembly-brand.zip` — Logo and brand assets
+- `wave-assembly-rider.pdf` — Technical rider
+- `wave-assembly-epk.pdf` — Full electronic press kit
+
+Files in this folder are served at `/press/[filename]`.

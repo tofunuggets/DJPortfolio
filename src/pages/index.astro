@@ -1,0 +1,304 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import SoundCloudEmbed from '../components/SoundCloudEmbed.astro';
+
+const soundcloudUrl = 'https://soundcloud.com/waveassembly';
+
+const gigs = [
+  { date: 'Aug 15', venue: 'Fabric', city: 'London', status: 'Upcoming' },
+  { date: 'Sep 02', venue: 'De School', city: 'Amsterdam', status: 'Upcoming' },
+  { date: 'Jul 12', venue: 'Printworks', city: 'London', status: 'Past' },
+  { date: 'Jun 28', venue: 'Watergate', city: 'Berlin', status: 'Past' },
+];
+
+const pressAssets = [
+  {
+    title: 'Press Photos',
+    description: 'High-resolution live and portrait images.',
+    filename: 'wave-assembly-photos.zip',
+  },
+  {
+    title: 'Logo & Brand Assets',
+    description: 'Logo marks, wordmarks, and color specs.',
+    filename: 'wave-assembly-brand.zip',
+  },
+  {
+    title: 'Technical Rider',
+    description: 'Stage setup, backline, and hospitality requirements.',
+    filename: 'wave-assembly-rider.pdf',
+  },
+  {
+    title: 'Full EPK',
+    description: 'Complete electronic press kit — bio, photos, and links.',
+    filename: 'wave-assembly-epk.pdf',
+  },
+];
+---
+
+<Layout>
+  <Header />
+
+  <main>
+    <!-- Hero -->
+    <section id="home" class="relative flex min-h-screen items-center overflow-hidden pt-20">
+      <div class="pointer-events-none absolute inset-0">
+        <div class="absolute -left-32 top-1/4 h-96 w-96 rounded-full bg-accent/20 blur-[120px]"></div>
+        <div class="absolute -right-32 bottom-1/4 h-80 w-80 rounded-full bg-glow/15 blur-[100px]"></div>
+      </div>
+
+      <div class="relative mx-auto grid max-w-6xl gap-12 px-6 py-24 lg:grid-cols-2 lg:items-center">
+        <div>
+          <p class="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-accent-soft">DJ · Producer · Selector</p>
+          <h1 class="font-display text-5xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
+            Wave<br />
+            <span class="bg-gradient-to-r from-accent-soft to-white bg-clip-text text-transparent">Assembly</span>
+          </h1>
+          <p class="mt-6 max-w-md text-lg leading-relaxed text-muted">
+            House, techno, and everything in between. Curating journeys for clubs, festivals, and intimate rooms.
+          </p>
+          <div class="mt-10 flex flex-wrap gap-4">
+            <a
+              href="#music"
+              class="rounded-full bg-accent px-7 py-3 text-sm font-semibold text-white transition-all hover:bg-accent-soft hover:shadow-lg hover:shadow-accent/25"
+            >
+              Listen on SoundCloud
+            </a>
+            <a
+              href="#press-kit"
+              class="rounded-full border border-white/15 px-7 py-3 text-sm font-semibold text-white transition-all hover:border-white/30 hover:bg-white/5"
+            >
+              Press Kit
+            </a>
+          </div>
+        </div>
+
+        <div class="relative hidden lg:block">
+          <div class="overflow-hidden rounded-3xl border border-white/10 bg-surface shadow-2xl shadow-accent/10">
+            <SoundCloudEmbed profileUrl={soundcloudUrl} height={400} />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="border-t border-white/5 bg-surface/50 py-24">
+      <div class="mx-auto max-w-6xl px-6">
+        <div class="grid gap-16 lg:grid-cols-2 lg:items-center">
+          <div>
+            <p class="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-accent-soft">About</p>
+            <h2 class="font-display text-4xl font-bold tracking-tight text-white">Behind the decks</h2>
+            <p class="mt-6 leading-relaxed text-muted">
+              Wave Assembly is a DJ and producer known for deep, driving sets that move seamlessly between house and techno. With residencies at underground venues across Europe and releases on independent labels, the focus is always on energy, flow, and the room.
+            </p>
+            <p class="mt-4 leading-relaxed text-muted">
+              From warehouse raves to festival main stages, every set is built around reading the crowd and creating a shared moment on the dancefloor.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            {[
+              { value: '200+', label: 'Gigs played' },
+              { value: '12', label: 'Original tracks' },
+              { value: '8', label: 'Years active' },
+              { value: '40K+', label: 'Monthly listeners' },
+            ].map((stat) => (
+              <div class="rounded-2xl border border-white/5 bg-ink/60 p-6 transition-colors hover:border-accent/20">
+                <p class="font-display text-3xl font-bold text-white">{stat.value}</p>
+                <p class="mt-1 text-sm text-muted">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Music -->
+    <section id="music" class="py-24">
+      <div class="mx-auto max-w-6xl px-6">
+        <div class="mb-12 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p class="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-accent-soft">Music</p>
+            <h2 class="font-display text-4xl font-bold tracking-tight text-white">Listen on SoundCloud</h2>
+            <p class="mt-3 max-w-lg text-muted">Mixes, originals, and live recordings from Wave Assembly.</p>
+          </div>
+          <a
+            href={soundcloudUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-sm font-medium text-accent-soft transition-colors hover:text-white"
+          >
+            Open full profile →
+          </a>
+        </div>
+
+        <SoundCloudEmbed profileUrl={soundcloudUrl} height={450} />
+      </div>
+    </section>
+
+    <!-- Press Kit -->
+    <section id="press-kit" class="border-t border-white/5 bg-surface/50 py-24">
+      <div class="mx-auto max-w-6xl px-6">
+        <div class="grid gap-16 lg:grid-cols-2">
+          <div>
+            <p class="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-accent-soft">Press Kit</p>
+            <h2 class="font-display text-4xl font-bold tracking-tight text-white">For media & bookers</h2>
+            <p class="mt-6 leading-relaxed text-muted">
+              Everything you need to promote Wave Assembly — bios, photos, brand assets, and technical requirements.
+            </p>
+
+            <div class="mt-8 space-y-6 rounded-2xl border border-white/5 bg-ink/40 p-6">
+              <div>
+                <h3 class="text-sm font-semibold uppercase tracking-wider text-accent-soft">Short bio</h3>
+                <p class="mt-2 text-sm leading-relaxed text-muted">
+                  Wave Assembly is a DJ and producer crafting deep house and techno sets for clubs and festivals worldwide. Known for seamless transitions and peak-time energy.
+                </p>
+              </div>
+              <div>
+                <h3 class="text-sm font-semibold uppercase tracking-wider text-accent-soft">Long bio</h3>
+                <p class="mt-2 text-sm leading-relaxed text-muted">
+                  Wave Assembly has spent the better part of a decade building a reputation on the underground circuit, holding residencies across Europe and releasing on independent labels. Sets blend hypnotic grooves with driving percussion — built for late-night rooms and open-air stages alike. Available for club bookings, festival slots, and private events.
+                </p>
+              </div>
+              <div>
+                <h3 class="text-sm font-semibold uppercase tracking-wider text-accent-soft">Press contact</h3>
+                <a
+                  href="mailto:press@waveassembly.com"
+                  class="mt-2 inline-block text-sm font-medium text-white transition-colors hover:text-accent-soft"
+                >
+                  press@waveassembly.com
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="mb-6 font-display text-xl font-semibold text-white">Download assets</h3>
+            <div class="grid gap-4">
+              {
+                pressAssets.map((asset) => (
+                  <a
+                    href={`/press/${asset.filename}`}
+                    download
+                    class="group flex items-start gap-4 rounded-2xl border border-white/5 bg-ink/60 p-5 transition-all hover:border-accent/30 hover:bg-ink"
+                  >
+                    <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent/15 text-accent-soft transition-colors group-hover:bg-accent/25">
+                      <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="1.5"
+                          d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <p class="font-medium text-white group-hover:text-accent-soft">{asset.title}</p>
+                      <p class="mt-1 text-sm text-muted">{asset.description}</p>
+                      <p class="mt-2 text-xs text-muted/70">{asset.filename}</p>
+                    </div>
+                  </a>
+                ))
+              }
+            </div>
+
+            <p class="mt-6 text-xs leading-relaxed text-muted">
+              Drop your actual press files into <code class="rounded bg-white/5 px-1.5 py-0.5 text-accent-soft">public/press/</code> to enable downloads.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gigs -->
+    <section id="gigs" class="py-24">
+      <div class="mx-auto max-w-6xl px-6">
+        <p class="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-accent-soft">Live</p>
+        <h2 class="font-display text-4xl font-bold tracking-tight text-white">Upcoming & recent gigs</h2>
+
+        <div class="mt-12 overflow-hidden rounded-2xl border border-white/5">
+          <table class="w-full text-left">
+            <thead>
+              <tr class="border-b border-white/5 bg-ink/40 text-xs uppercase tracking-wider text-muted">
+                <th class="px-6 py-4 font-medium">Date</th>
+                <th class="px-6 py-4 font-medium">Venue</th>
+                <th class="px-6 py-4 font-medium">City</th>
+                <th class="px-6 py-4 font-medium">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                gigs.map((gig) => (
+                  <tr class="group border-b border-white/5 transition-colors last:border-0 hover:bg-accent/5">
+                    <td class="px-6 py-5 font-medium text-white">{gig.date}</td>
+                    <td class="px-6 py-5 text-white">{gig.venue}</td>
+                    <td class="px-6 py-5 text-muted">{gig.city}</td>
+                    <td class="px-6 py-5">
+                      <span
+                        class:list={[
+                          'inline-block rounded-full px-3 py-1 text-xs font-medium',
+                          gig.status === 'Upcoming'
+                            ? 'bg-accent/15 text-accent-soft'
+                            : 'bg-white/5 text-muted',
+                        ]}
+                      >
+                        {gig.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="border-t border-white/5 bg-surface/50 py-24">
+      <div class="mx-auto max-w-6xl px-6">
+        <div class="rounded-3xl border border-white/5 bg-gradient-to-br from-surface to-ink p-10 sm:p-16">
+          <div class="mx-auto max-w-xl text-center">
+            <p class="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-accent-soft">Contact</p>
+            <h2 class="font-display text-4xl font-bold tracking-tight text-white">Let's work together</h2>
+            <p class="mt-4 text-muted">
+              Available for club residencies, festival bookings, private events, and collaborations.
+            </p>
+            <a
+              href="mailto:bookings@waveassembly.com"
+              class="mt-8 inline-block rounded-full bg-accent px-8 py-3.5 text-sm font-semibold text-white transition-all hover:bg-accent-soft hover:shadow-lg hover:shadow-accent/25"
+            >
+              bookings@waveassembly.com
+            </a>
+
+            <div class="mt-10 flex items-center justify-center gap-6">
+              {
+                [
+                  { label: 'SoundCloud', href: soundcloudUrl },
+                  { label: 'Instagram', href: '#' },
+                  { label: 'Spotify', href: '#' },
+                ].map((link) => (
+                  <a
+                    href={link.href}
+                    target={link.href.startsWith('http') ? '_blank' : undefined}
+                    rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    class="text-sm font-medium text-muted transition-colors hover:text-accent-soft"
+                  >
+                    {link.label}
+                  </a>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-white/5 py-8">
+    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 sm:flex-row">
+      <p class="font-display text-sm font-semibold text-white">Wave Assembly</p>
+      <p class="text-sm text-muted">© {new Date().getFullYear()} Wave Assembly. All rights reserved.</p>
+    </div>
+  </footer>
+</Layout>

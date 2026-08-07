@@ -1,0 +1,97 @@
+---
+const navItems = [
+  { label: 'Home', href: '#home' },
+  { label: 'About', href: '#about' },
+  { label: 'Music', href: '#music' },
+  { label: 'Press Kit', href: '#press-kit' },
+  { label: 'Gigs', href: '#gigs' },
+  { label: 'Contact', href: '#contact' },
+];
+---
+
+<header class="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-ink/80 backdrop-blur-md">
+  <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+    <a
+      href="#home"
+      class="font-display text-xl font-bold tracking-tight text-white transition-colors hover:text-accent-soft"
+    >
+      Wave Assembly
+    </a>
+
+    <ul class="hidden items-center gap-1 md:flex">
+      {
+        navItems.map((item) => (
+          <li>
+            <a href={item.href} class="nav-link group relative px-4 py-2 text-sm font-medium text-muted">
+              <span class="relative z-10 transition-colors group-hover:text-white">{item.label}</span>
+              <span class="nav-link-underline absolute inset-x-2 bottom-1 h-px origin-left scale-x-0 bg-accent-soft transition-transform duration-300 group-hover:scale-x-100" />
+              <span class="nav-link-glow absolute inset-0 rounded-lg bg-accent/0 transition-colors duration-300 group-hover:bg-accent/10" />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <a
+      href="#contact"
+      class="hidden rounded-full border border-accent/40 bg-accent/10 px-5 py-2 text-sm font-medium text-accent-soft transition-all hover:border-accent hover:bg-accent/20 hover:text-white md:inline-block"
+    >
+      Book Now
+    </a>
+
+    <!-- Mobile menu toggle -->
+    <button
+      id="menu-toggle"
+      type="button"
+      class="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 text-white md:hidden"
+      aria-label="Open menu"
+      aria-expanded="false"
+    >
+      <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden border-t border-white/5 bg-ink/95 px-6 py-4 md:hidden">
+    <ul class="flex flex-col gap-1">
+      {
+        navItems.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class="mobile-nav-link block rounded-lg px-4 py-3 text-sm font-medium text-muted transition-colors hover:bg-accent/10 hover:text-white"
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <a
+      href="#contact"
+      class="mobile-nav-link mt-3 block rounded-full border border-accent/40 bg-accent/10 px-5 py-3 text-center text-sm font-medium text-accent-soft"
+    >
+      Book Now
+    </a>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = !menu?.classList.contains('hidden');
+    menu?.classList.toggle('hidden');
+    toggle.setAttribute('aria-expanded', String(!isOpen));
+  });
+
+  document.querySelectorAll('.mobile-nav-link').forEach((link) => {
+    link.addEventListener('click', () => {
+      menu?.classList.add('hidden');
+      toggle?.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
